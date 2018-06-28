@@ -32,6 +32,8 @@ defmodule Conduit.FieldTypeError do
     "Field '#{fname}' failed validation:\n#{Enum.join(texts, "\n")}"
   end
 
+  defp type_name(true), do: "bool"
+  defp type_name(false), do: "bool"
   defp type_name(value) when is_binary(value), do: "string"
   defp type_name(value) when is_integer(value), do: "integer"
   defp type_name(value) when is_float(value), do: "float"
