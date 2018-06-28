@@ -24,6 +24,9 @@ defmodule Conduit.FieldTypeError do
   defp make_message(fname, type, value, nil) do
     "Field '#{fname}' is of type #{inspect type}. Current value contains #{type_name(value)}."
   end
+  defp make_message(fname, type, _value, {:error, error=%ValidationError{}}) do
+    "Field name '#{fname}' of type #{inspect type} failed validation:\n#{error}"
+  end
   defp make_message(fname, type, _value, error=%ValidationError{}) do
     "Field name '#{fname}' of type #{inspect type} failed validation:\n#{error}"
   end
